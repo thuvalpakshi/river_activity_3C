@@ -15,6 +15,9 @@ FEATURES
 9. Online members and friends online, recent members riverbox
 10. Group membership, latest groups, Featured group riverboxes
 11. Latest blogs, file, photos, videos, wire etc.
+12. HTML Message box open as a popup for one time. so can be used for important notices
+13. Members celebrating birthdays can be viewed as a page. It has 3 tabs of current, next and previous months
+and more....
 
 UPCOMING FEATURES
 
