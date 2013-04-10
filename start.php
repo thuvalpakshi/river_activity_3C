@@ -24,24 +24,31 @@ function river_activity_3C_init() {
     elgg_register_page_handler('river_activity_3C','river_activity_3C_page_handler');
     elgg_register_event_handler('login', 'user', 'river_activity_3C_login_check');
     elgg_register_menu_item('site', new ElggMenuItem('river_activity_3C', elgg_echo('river_activity_3C:birthdays'), 'river_activity_3C'));
-
+  
 //Register Plugin Hook to Send Birthday Message.
 if (elgg_get_plugin_setting('send_wishes','river_activity_3C') == 'yes'){    
     elgg_register_plugin_hook_handler('cron', 'daily', 'river_activity_3C_bday_mailer');
 }
 
 //Register the java scripts for Message Rotation
-
     $msg_rotate = elgg_get_simplecache_url('js', 'site_messages');
     elgg_register_simplecache_view('js/site_messages');
-    elgg_register_js('elgg.message_rotation', $msg_rotate);
-    elgg_load_js('elgg.message_rotation');
-
+    elgg_register_js('site_messages', $msg_rotate, 'head');
+    elgg_load_js('site_messages');
+    
+//Register action for Ajax post of wire
+    $action_path = elgg_get_plugins_path().'river_activity_3C/actions';
+    elgg_register_action("river_activity_3C/add", $action_path."/add.php");
+    elgg_extend_view('js/elgg', 'js/wire_add');
+    //elgg_extend_view('js/elgg', 'js/auto_river_activity');
+    
 
 //Extend the views in sidebar and sidebar_alt
 if ((elgg_is_logged_in()) && (elgg_get_context() == 'activity')){
+    
     $default = '700';
-
+    elgg_load_js('auto_river_activity');
+    
     //Showing Site Status
     if (elgg_get_plugin_setting('show_status','river_activity_3C') == 'yes'){
     if (elgg_get_plugin_setting('status_pos','river_activity_3C') == 'left'){

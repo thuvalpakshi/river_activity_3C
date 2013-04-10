@@ -17,7 +17,7 @@
 
 if (elgg_is_active_plugin('thewire')){
 $title = elgg_echo('river_activity_3C:wire');
-$river_body = elgg_view_form('thewire/add');
+$river_body = elgg_view_form('thewire/add', array('name' => 'river_activity_3C_wire'));
 $box_view = elgg_get_plugin_setting('view_riverbox_wire', 'river_activity_3C');
 
 echo elgg_view_module($box_view, $title, $river_body);
