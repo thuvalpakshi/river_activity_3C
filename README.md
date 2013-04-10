@@ -17,11 +17,12 @@ FEATURES
 11. Latest blogs, file, photos, videos, wire etc.
 12. HTML Message box open as a popup for one time. so can be used for important notices
 13. Members celebrating birthdays can be viewed as a page. It has 3 tabs of current, next and previous months
+14. Wire posting is now Ajax.
 and more....
 
 UPCOMING FEATURES
 
 1. Drag and Drop settings for riverboxs so verical arrangment will be easy
-2. Ajax river wire post
+
 
 
