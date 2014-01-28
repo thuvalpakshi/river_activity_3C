@@ -1,28 +1,42 @@
-Three column River Activity page for Elgg 1.8.x
-
-This plugin will extend the views of Activiy page of Elgg 1.8.x version with lots of views..
+This will replace the default activity page with three / two column, which is fully configurable from plugin settings.
 
 FEATURES
 
-1. You can set the activity page as 3 column or 2 column
-2. Shows Birthday of members in sidebar
-3. Option to send Birthday wishes to members celebrating their birthday. (daily cron required)
-4. Rotating Site Announcements at the center
-5. Wire Add form
-6. Any Entity River box.. Just add the Object subtype in the settings you will get a Riverbox in the activity page for that entity
-7. Riverbox view can be selected from 4 views
-8. Riverbox can be arranged in left or right side. with vertical ordering too
-9. Online members and friends online, recent members riverbox
-10. Group membership, latest groups, Featured group riverboxes
-11. Latest blogs, file, photos, videos, wire etc.
-12. HTML Message box open as a popup for one time. so can be used for important notices
-13. Members celebrating birthdays can be viewed as a page. It has 3 tabs of current, next and previous months
-14. Wire posting is now Ajax.
-and more....
+    You can set the activity page as 3 column or 2 column
+    You can set the whole site as 3 column or 2 column
+    Shows Birthday of members in sidebar..
+    Shows the members who celebrate birthdays in current month, previous and next months
+    Option to send Birthday wishes to members celebrating their birthday. (daily cron required)
+    Rotating Site Announcements at the center
+    Riverbox view can be selected from 4 views
+    Riverbox can be arranged in left or right side. with vertical ordering too
+    Online members and friends online, recent members riverbox
+    Group membership, latest groups, Featured group riverboxes
+    Latest blogs, files, pages, bookmarks, wire, disscussions, events, photos, videos etc...
+    Any Entity River box.. Just add the Object subtype in the settings you will get a Riverbox in the activity page for that entity
+    HTML Message box
+    Option to show HTML Message open as a popup for one time per session. so can be used for important notices
+    Shows profile photo and some links below...
+    Option to show the date of join and last login to the site below the profile photo
+    Site online status (enter the start date of site and will show how many days has passed since the start of site and its total users and active users
+    Daily horoscope box
+    Now posting forms of wire, blog, file, video, photos and bookmarks are available activity page as tabs.
+    Ajax posting of wire to river page
+    No conflict with any other plugins and goes with any theme (Dont know about facebook theme and related themes)
 
 UPCOMING FEATURES
 
-1. Drag and Drop settings for riverboxs so verical arrangment will be easy
+    Drag and Drop settings for riverboxs so vertical arrangement will be easy
+    Live river update without refresh
+
+    I got ELGG for free and hence my plugins will always free.
+
+    If this plugin is useful for you, Please do a recommendation for this plugin. Thank You.
+    your comments and suggestions are always welcome.
 
 
+Thing to Remember :
 
+    After enabling the plugin run the script at Administer->users->birthday members.. to associate a new metadata "BD-month" to all members haveing a birthday metadata...
+
+    Please do run this scriopt to make your site load faster....
