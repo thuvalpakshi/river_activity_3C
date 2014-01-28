@@ -45,15 +45,22 @@ if (elgg_get_plugin_setting('send_wishes','river_activity_3C') == 'yes'){
     $action_path = elgg_get_plugins_path().'river_activity_3C/actions';
     elgg_register_action("river_activity_3C/add", $action_path."/add.php");
     elgg_extend_view('js/elgg', 'js/wire_add');
-    //elgg_extend_view('js/elgg', 'js/auto_river_activity');
     
+//Register Ajax view for loading forms
+
+    elgg_register_ajax_view('thewire/add', array('name' => 'ann_wire'));
+    elgg_register_ajax_view('blog/save');
+    elgg_register_ajax_view('file/upload');
+    elgg_register_ajax_view('photos/album/save');
+    elgg_register_ajax_view('videos/save');
+    elgg_register_ajax_view('bookmarks/save');
+    elgg_register_ajax_view('invitefriends/invite');
 
 //Extend the views in sidebar and sidebar_alt
 if ((elgg_is_logged_in()) && (elgg_get_context() == 'activity')){
     
     $default = '700';
-    elgg_load_js('auto_river_activity');
-    
+   
     //Showing Site Status
     if (elgg_get_plugin_setting('show_status','river_activity_3C') == 'yes'){
     if (elgg_get_plugin_setting('status_pos','river_activity_3C') == 'left'){

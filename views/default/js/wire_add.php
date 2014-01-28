@@ -1,3 +1,10 @@
+<?php
+/*
+ * Satheesh PM, BARC Mumbai
+ * www.satheesh.anushaktinagar.net
+*/
+?>
+
 elgg.provide('elgg.river_activity_3C');
 
 elgg.river_activity_3C.init = function() {

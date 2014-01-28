@@ -15,7 +15,7 @@
          *
          */
 
-//if (elgg_is_active_plugin('tidypics')) {
+if (elgg_is_active_plugin('tidypics')) {
 
        $title = elgg_echo('river_activity_3C:photo');
 	$num =  (int) elgg_get_plugin_setting('num_photo', 'river_activity_3C');
@@ -44,5 +44,5 @@
             echo elgg_view_module($box_view, $title, $river_body);
         }
  
-//}
+}
 

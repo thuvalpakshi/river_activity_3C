@@ -7,8 +7,9 @@
 if (elgg_is_active_plugin('profile_manager')){
 $bday = elgg_get_plugin_setting('birth_day', 'river_activity_3C');
 
-$next_month_date = date('F', strtotime('+1 months'));
-$month = date('m', strtotime("+1 months"));
+$day15 = strtotime(date('15 F Y'));
+$next_month_date = date('F', strtotime('+1 months', $day15));
+$month = date('m', strtotime("+1 months", $day15));
 
 $title = elgg_echo(elgg_echo('river_activity_3C:birthdays_in_month').' in '.$next_month_date);
 

@@ -231,3 +231,62 @@ p.jshowoff-controls {
 	color: #0054A7;
 }
 
+
+/* Tab Contents */
+
+	ul.tabs {
+		margin:0;
+		padding: 0;
+		float: left;
+		list-style: none;
+		height: 42px;
+		border-bottom: 1px solid #999999;
+		border-left: 1px solid #999999;
+		width: 100%;
+	}
+	ul.tabs li {
+		float: left;
+		cursor: pointer;
+		padding: 5px;
+		height:31px;
+                line-height:31px;
+		border: 1px solid #999999;
+		border-left: none;
+		font-weight: bold;
+		background: #EEEEEE;
+		overflow: hidden;
+		position: relative;
+                
+	}
+	ul.tabs li:hover {
+		background: #CCCCCC;
+	}	
+	ul.tabs li.active{
+		background: #FFFFFF;
+		border-bottom: 1px solid #FFFFFF;
+	}
+        
+	ul.tabs li img{
+		margin-top: 5px;
+                margin-right: 2px;
+                float:left;
+	}
+	.tab_container {
+		/*border: 1px solid #999999; */
+		/*border-top: none; */
+ 		clear: both;
+		float: left; 
+		background: #FFFFFF;
+		width: 100%;
+		overflow: hidden;
+                position: relative;
+                
+	}
+	.tab_content {
+		padding-top:20px;
+                padding-left:5px;
+                padding-right:5px;
+		display: none;
+		height: auto;
+
+	}

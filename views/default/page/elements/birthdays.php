@@ -17,10 +17,6 @@
 
 if (elgg_is_active_plugin('profile_manager')){
 
-        $today = date('m,d', strtotime("now"));
-	$tomorrow = date('m,d', strtotime("+1 days"));
-
-        
         $title = elgg_echo('river_activity_3C:birthdays');
         $title_today = elgg_echo('river_activity_3C:today');
         $title_tomorrow = elgg_echo('river_activity_3C:tomorrow');
@@ -29,13 +25,17 @@ if (elgg_is_active_plugin('profile_manager')){
         $bday = elgg_get_plugin_setting('birth_day', 'river_activity_3C');
         $bday_view = elgg_get_plugin_setting('view_birthday', 'river_activity_3C');
         
-        $today = date('d,m', strtotime("now"));
-        $tomorrow = date('d,m', strtotime("+1 days"));
-        $month = date('m', strtotime("now"));
-        
+        $today = date('m, d', strtotime("now"));
+        $tomorrow = date('m, d', strtotime("+1 day"));
+        $upcoming =  date('m, d', strtotime("+15 day"));
+
+        $day15 = strtotime(date('15 F Y'));
+        $month_now = date('m', strtotime("0 months", $day15));
+        $month_next = date('m', strtotime("+1 months", $day15));
+
         $options = array(
             'metadata_names' => 'BD_month',
-            'metadata_values' => $month,
+            'metadata_values' => array($month_now, $month_next),
             'types' => 'user',
             'limit' => false,
             'full_view' => false,
@@ -52,16 +52,17 @@ if (elgg_is_active_plugin('profile_manager')){
                 $dob_upcoming = '';
         
                 foreach ($birthday_members as $birthday_member) {
-                $dob = strtotime($birthday_member->$bday); 
-		$birthdate = date('m/d', $dob);
-                $bd = date('d, F', $dob);
+                    $dob = strtotime($birthday_member->$bday);
+                    $birthmonth = date('m', $dob);
+                    $birthdate = date('m, d', $dob);
+                    $bd = date('d, F', $dob);
                 
                 if ($bday_view == 'icon'){
                         if ($birthdate == $today){
 			$dob_today .= elgg_view_entity_icon($birthday_member, 'tiny', array($options));
 			}else if ($birthdate == $tomorrow){
 			$dob_tomorrow .= elgg_view_entity_icon($birthday_member, 'tiny', array($options));
-                      	}else if (($birthdate > $tomorrow) /* && ($birthdate <= $upcoming)*/ ){
+                      	}else if (($birthdate > $tomorrow) && ($birthdate <= $upcoming)){
 			$dob_upcoming .= elgg_view_entity_icon($birthday_member, 'tiny', array($options));
 			}
                 }else {
@@ -69,7 +70,7 @@ if (elgg_is_active_plugin('profile_manager')){
 			$dob_today .= elgg_view_entity($birthday_member, array($options)).$bd;
 			}else if ($birthdate == $tomorrow){
 			$dob_tomorrow .= elgg_view_entity($birthday_member, array($options)).$bd;
-                      	}else if (($birthdate > $tomorrow) /* && ($birthdate <= $upcoming)*/ ){
+                      	}else if (($birthdate > $tomorrow) && ($birthdate <= $upcoming) ){
 			$dob_upcoming .= elgg_view_entity($birthday_member, array($options)).$bd;
 			}
                 }}
