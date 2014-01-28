@@ -4,27 +4,26 @@
  * www.satheesh.anushaktinagar.net
 */
 
-
+if (elgg_is_active_plugin('profile_manager')){
 $bday = elgg_get_plugin_setting('birth_day', 'river_activity_3C');
 
-$current_month_date = date('F', strtotime('now'));
-$prev_month_date = date('F', strtotime('-1 months')); 
 $next_month_date = date('F', strtotime('+1 months'));
-$month = $next_month_date;
+$month = date('m', strtotime("+1 months"));
 
-$title = elgg_echo(elgg_echo('river_activity_3C:birthdays_in_month').' in '.$month);
+$title = elgg_echo(elgg_echo('river_activity_3C:birthdays_in_month').' in '.$next_month_date);
 
 
 elgg_set_ignore_access(true);
 
 $options = array(
-    'metadata_names' => $bday,
-    'types' => 'user',
-    'limit' => false,
-    'full_view' => false,
-    'pagination' => false,
-    'order_by_metadata' => array('name' => $bday, 'direction' => ASC, 'as' => 'integer')
-);
+            'metadata_names' => 'BD_month',
+            'metadata_values' => $month,
+            'types' => 'user',
+            'limit' => false,
+            'full_view' => false,
+            'pagination' => false,
+            
+        );
 
 $birthday_members = new ElggBatch('elgg_get_entities_from_metadata', $options);    
 elgg_set_ignore_access(false);
@@ -34,7 +33,7 @@ if ($birthday_members) {
 
     foreach ($birthday_members as $birthday_member) {
         $dob = strtotime($birthday_member->$bday);
-        $birthmonth = date('F', $dob);
+        $birthmonth = date('m', $dob);
         $bd = date('d, F', $dob);
         
         if($birthmonth == $month){
@@ -47,5 +46,9 @@ if ($birthday_members) {
     $body = elgg_echo ('river_activity_3C:birthdays-no');
     echo elgg_view_module('info', $title, $body);
 }
-
+}else{
+    $title = elgg_echo('river_activity_3C:birthdays');
+    $river_body = elgg_echo ('river_activity_3C:birthdays-no');
+    echo elgg_view_module($box_view, $title, $river_body);
+}
 

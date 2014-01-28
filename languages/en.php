@@ -39,6 +39,7 @@ $english = array(
     'river_activity_3C:popup' => 'Pop Up',
     'river_activity_3C:viewmore' => 'View More',
     'river_activity_3C:layout' => 'Layouts',
+    'admin:users:birthday' => 'User Birthdays',
 
 //Horoscope River Box
     'river_activity_3C:show_horoscope' => 'Show horoscope in 3C River Activity Page',
@@ -107,6 +108,13 @@ $english = array(
     'river_activity_3C:blog-no' => 'There are no Blogs',
     'river_activity_3C:show_blog' => 'Show the latest Blogs in 3C River Activity Page',
     'river_activity_3C:blog_active' => 'Blog plugin is not activated',
+
+ //Events manager Plugin
+    'river_activity_3C:event' => 'Upcoming Events',
+    'river_activity_3C:event-no' => 'There are no Upcoming Events',
+    'river_activity_3C:show_event' => 'Show the Upcoming Events in 3C River Activity Page',
+    'river_activity_3C:event_active' => 'Event Manager plugin is not activated',
+    'river_activity_3C:Addevent' => 'Add Event',
     
 //Pages Plugin
     'river_activity_3C:page' => 'Latest Pages',
@@ -192,6 +200,7 @@ $english = array(
     'river_activity_3C:send_wishes' => 'Send Birthday Wishes to Members on their birthday? (Need to have a working Cron)',
     'river_activity_3C:bdaypar' => 'Enter the name of profile field that corresponds to <br />Birth Date of Members in Profile Manager',
     'river_activity_3C:help' => 'Help',
+    'river_activity_3C:convert' =>'Click here to create a new metadata assosciated with each birthday members to avoid fetching all site users from database',
     'river_activity_3C:view_birthday' => 'Select a view type for Birth of Members',
     'river_activity_3C:profile_manager_active' => 'Profile Manager plugin or Member Plugin is not activated',
     

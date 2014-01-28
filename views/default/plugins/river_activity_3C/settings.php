@@ -287,6 +287,47 @@
     echo '<div class="admin_settings"><font color="red"><b>'.elgg_echo('river_activity_3C:blog_active').'</b></font></div>';
     }
     
+    
+//Events
+    
+    if (elgg_is_active_plugin('event_manager')){
+    echo "<h3>".elgg_echo('river_activity_3C:event')."</h3>"; 
+    echo '<div class="admin_settings">'.elgg_echo('river_activity_3C:show_event').'  :  ';
+    echo elgg_view('input/dropdown', array(
+            'name' => 'params[show_event]',
+            'options_values' => array(
+                    'no' => elgg_echo('river_activity_3C:no'),
+                    'yes' => elgg_echo('river_activity_3C:yes')
+            ),
+            'value' => $vars['entity']->show_event,
+            ));
+    echo '<br />'.elgg_echo('river_activity_3C:pos').'  :  ';
+    echo elgg_view('input/dropdown', array(
+            'name' => 'params[event_pos]',
+            'options_values' => array(
+                    'right' => elgg_echo('river_activity_3C:right'),
+                    'left' => elgg_echo('river_activity_3C:left')
+            ),
+            'value' => $vars['entity']->event_pos,
+            ));
+   echo "<br />".elgg_echo('river_activity_3C:pir')." : ";
+   echo elgg_view('input/text', array(
+            'name' => "params[event_pir]",
+            'value' => $vars['entity']->event_pir,
+            ));
+    echo '<br />'.elgg_echo('river_activity_3C:number').'  :  ';
+    echo elgg_view('input/dropdown', array(
+            'name' => "params[num_event]",
+            'options_values' => array('1' =>'1','2' => '2','3' => '3','4' => '4','5' => '5'),
+            'value' => $vars['entity']->num_event,
+            ));
+    echo "</div>";
+    }  else {
+    echo '<div class="admin_settings"><font color="red"><b>'.elgg_echo('river_activity_3C:event_active').'</b></font></div>';
+    }
+    
+    
+    
 //Pages
     
     if (elgg_is_active_plugin('pages')){
@@ -430,7 +471,7 @@
 
 //Tidypics
     
-    //if (elgg_is_active_plugin('tidypics')){
+    if (elgg_is_active_plugin('tidypics')){
     echo "<h3>".elgg_echo('river_activity_3C:photo')."</h3>";
     echo '<div class="admin_settings">'.elgg_echo('river_activity_3C:show_photo').'  :  ';
     echo elgg_view('input/dropdown', array(
@@ -462,11 +503,11 @@
             'value' => $vars['entity']->num_photo,
             ));
     echo "</div>";
-/*
+
     }  else {
     echo '<div class="admin_settings"><font color="red"><b>'.elgg_echo('river_activity_3C:photo_active').'</b></font></div>';
     }
-*/
+
 //Videos
     
     if (elgg_is_active_plugin('videos')){
@@ -690,6 +731,7 @@
             ),
             'value' => $vars['entity']->send_wishes,
             ));
+    echo '<br />[<a href="'.elgg_get_site_url().'admin/users/birthday" >'.elgg_echo('river_activity_3C:convert').'</a>]';
     echo "</div>";
     }else {
     echo '<div class="admin_settings"><font color="red"><b>'.elgg_echo('river_activity_3C:profile_manager_active').'</b></font></div>';

@@ -24,6 +24,11 @@ function river_activity_3C_init() {
     elgg_register_page_handler('river_activity_3C','river_activity_3C_page_handler');
     elgg_register_event_handler('login', 'user', 'river_activity_3C_login_check');
     elgg_register_menu_item('site', new ElggMenuItem('river_activity_3C', elgg_echo('river_activity_3C:birthdays'), 'river_activity_3C'));
+    elgg_register_admin_menu_item('administer', 'birthday', 'users');
+    
+    //Register the lib and load it
+    elgg_register_library('3C_RA_funcs', elgg_get_plugins_path() . 'river_activity_3C/lib/river_activity_3C.php');
+    elgg_load_library('3C_RA_funcs');
   
 //Register Plugin Hook to Send Birthday Message.
 if (elgg_get_plugin_setting('send_wishes','river_activity_3C') == 'yes'){    
@@ -57,6 +62,14 @@ if ((elgg_is_logged_in()) && (elgg_get_context() == 'activity')){
         elgg_extend_view('page/elements/sidebar', 'page/elements/site_status',$default + (int)elgg_get_plugin_setting('status_pir','river_activity_3C'));
     }}
 
+    //Showing Events
+    if (elgg_get_plugin_setting('show_event','river_activity_3C') == 'yes'){
+    if (elgg_get_plugin_setting('event_pos','river_activity_3C') == 'left'){
+        elgg_extend_view('page/elements/sidebar_alt', 'page/elements/events', $default + (int)elgg_get_plugin_setting('events_pir','river_activity_3C'));
+    }else {
+        elgg_extend_view('page/elements/sidebar', 'page/elements/events', $default + (int)elgg_get_plugin_setting('events_pir','river_activity_3C'));
+    }}
+    
     //Showing Horoscope
     if (elgg_get_plugin_setting('show_horoscope','river_activity_3C') == 'yes'){
     if (elgg_get_plugin_setting('horoscope_pos','river_activity_3C') == 'left'){
@@ -238,62 +251,6 @@ else if (elgg_is_logged_in() && (elgg_get_plugin_setting('view_site', 'river_act
 
 }
 
-function river_activity_3C_page_handler($page) {
-    $base = elgg_get_plugins_path() . 'river_activity_3C/pages/river_activity_3C/';
-    if (!isset($page[0])) {
-        $page[0] = 'current_month';
-    }
-    $vars = array();
-    $vars['page'] = $page[0];
-    require_once "$base/index.php";
-    return true;
-}
 
-function river_activity_3C_login_check(){
-    if(!isset(elgg_get_logged_in_user_entity()->show_popup)){
-    	elgg_get_logged_in_user_entity()->show_popup = 'yes';
-    }else{
-        elgg_get_logged_in_user_entity()->show_popup = 'yes';
-    }
-}
-
-//Functions For sending out Birthday Wishes.
-function river_activity_3C_bday_mailer($hook, $entity_type, $returnvalue, $params){
-        
-        $bday = elgg_get_plugin_setting('birth_day', 'river_activity_3C');
-        elgg_set_ignore_access(true);
-        $siteurl = elgg_get_site_entity()->url;
-        $sitename = elgg_get_site_entity()->name;
-        $siteemail = elgg_get_site_entity()->email;
-        $from = $sitename.' <'.$siteemail.'>';
-    
-        $options = array(
-                'metadata_names' => $bday,
-                'types' => 'user',
-                'limit' => false,
-                'full_view' => false,
-                'pagination' => false,
-        );
-
-        $bd_users = new ElggBatch('elgg_get_entities_from_metadata', $options);
-        $bd_today = date('j, F', strtotime('now')); 
-        
-        foreach ($bd_users as $bd_user){
-            $bd_name = $bd_user->name;
-            $bd_email = $bd_user->email;
-            $bd_day = date('j, F', strtotime($bd_user->$bday));
-        if ($bd_day == $bd_today){
-            if($bd_email){
-            $message = sprintf(elgg_echo('river_activity_3C:bday_message'), $bd_name, $bd_day, $sitename, $siteaddress);
-            elgg_send_email($from, $bd_email, elgg_echo('river_activity_3C:bday_message:subject'), $message);
-            $result = elgg_echo("river_activity_3C:bday_mailer_cron_true");
-            }else{
-            $result = elgg_echo("river_activity_3C:bday_mailer_cron_false");
-            }
-        }
-        }
-        elgg_set_ignore_access(false);
-        return $returnvalue.$result;
-}
 
 
